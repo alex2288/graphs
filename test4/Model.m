@@ -141,7 +141,7 @@ static BOOL inTest;
 
 + (void) newNodeinPoints:(CGPoint)startpoint endpoint:(CGPoint)endpoint WithValue:(NSString *)value WithParent:(TreeNode *)parent UsingStrategy:(TreeDrawingStrategy)strategy {
     if (strategy == Graph) {
-        //ploho
+        //
         if (cnd != nil) {
             GraphNode * found = [self findNodeinPoint: startpoint InWorkmode:GraphMode];
             if (found != nil) {
@@ -569,7 +569,6 @@ static BOOL inTest;
     else {
         [self showAlert:@"Nodes are not connected!" WithTitle:@"Error" InWorkmode:GraphMode];
     }
-    //shortestPathStart = nil;
 }
 
 BOOL enableAlternate = NO;
@@ -580,9 +579,6 @@ BOOL alternate = NO;
 }
 
 + (void) disableAlternate {
-    ////ploho?
-    ///shortestPathEnd = nil;
-    //shortestPathStart = nil;
     enableAlternate  = NO;
 }
 
@@ -647,7 +643,6 @@ BOOL alternate = NO;
 #pragma mark - Trees
 
 //add settings bundle
-//неправильно работает бфс, нода не удаляется из классик вью, нет бфс теста, по нажатию ок при вронг ноде нет перерисовки дерева, неправильно работает дфс тест?
 + (UIView *) initiateTreeMode: (UIScrollView *)scrollView viewcontroller: (UIViewController *)viewController {
     tviewcontroller = viewController;
     treeview = [UIView new];

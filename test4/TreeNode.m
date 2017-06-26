@@ -18,8 +18,6 @@ NSString * const tnpath = @"pt";
 
 @implementation TreeNode
 
-@synthesize layer = _layer, label = _label;
-
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.children forKey:tnchildren];

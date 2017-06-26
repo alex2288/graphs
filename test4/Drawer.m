@@ -60,7 +60,6 @@ const CGFloat NodePadding = 20.0;
 #pragma mark - Trees
 
 + (void)drawNode:(UIView *)view point:(CGPoint)point node:(TreeNode *)node {
-    //hz
     [node _layer];
     [node _label];
     node.layer.position = CGPointMake(point.x, point.y);
@@ -105,31 +104,29 @@ const CGFloat NodePadding = 20.0;
 }
 
 + (void) adjustView: (UIView *)view {
-    CGFloat wmax = 0;
-    CGFloat hmax = 0;
-    CGFloat wmin = view.frame.origin.x;
-    CGFloat hmin = view.frame.origin.y;
-    for (CALayer * v in [view.layer sublayers]) {
-        float fw = v.frame.origin.x + v.frame.size.width;
-        float fh = v.frame.origin.y + v.frame.size.height;
-        wmax = MAX(fw, wmax);
-        hmax = MAX(fh, hmax);
-        wmin = MIN(v.frame.origin.x, wmin);
-        hmin = MIN(v.frame.origin.y, hmin);
+    CGFloat wMax = 0;
+    CGFloat hMax = 0;
+    CGFloat wMin = view.frame.origin.x;
+    CGFloat hMin = view.frame.origin.y;
+    for (CALayer * currentView in [view.layer sublayers]) {
+        float currentWMax = currentView.frame.origin.x + currentView.frame.size.width;
+        float currentHMax = currentView.frame.origin.y + currentView.frame.size.height;
+        wMax = MAX(currentWMax, wMax);
+        hMax = MAX(currentHMax, hMax);
+        wMin = MIN(currentView.frame.origin.x, wMin);
+        hMin = MIN(currentView.frame.origin.y, hMin);
     }
-    /*ploho
-     для того чтобы при добавлении узла с краю экрана увеличивался scrollview
-     */
-    if (wmin < 0 || hmin <0) {
-        if (wmin < 0 && hmin <0)
-            [view setFrame:CGRectMake(0-wmin, 0-hmin, wmax-wmin, hmax-hmin)];
-        else if (hmin < 0)
-            [view setFrame:CGRectMake(wmin, 0-hmin, wmax, hmax-hmin)];
-        else if (wmin < 0)
-            [view setFrame:CGRectMake(0-wmin, hmin, wmax-wmin, hmax)];
+    //Scrollview enhancement.
+    if (wMin < 0 || hMin <0) {
+        if (wMin < 0 && hMin <0)
+            [view setFrame:CGRectMake(0-wMin, 0-hMin, wMax-wMin, hMax-hMin)];
+        else if (hMin < 0)
+            [view setFrame:CGRectMake(wMin, 0-hMin, wMax, hMax-hMin)];
+        else if (wMin < 0)
+            [view setFrame:CGRectMake(0-wMin, hMin, wMax-wMin, hMax)];
     }
     else
-        [view setFrame:CGRectMake(wmin, hmin, wmax, hmax)];
+        [view setFrame:CGRectMake(wMin, hMin, wMax, hMax)];
 }
 
 @end
